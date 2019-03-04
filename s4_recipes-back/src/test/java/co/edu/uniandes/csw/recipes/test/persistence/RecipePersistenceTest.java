@@ -55,6 +55,6 @@ public class RecipePersistenceTest {
         
         Assert.assertEquals(newEntity.getDescription(),entity.getDescription());
         Assert.assertEquals(newEntity.getName(), entity.getName());
-        
+        Assert.assertTrue(newEntity.getIngredients().size()>0);
     }
 }

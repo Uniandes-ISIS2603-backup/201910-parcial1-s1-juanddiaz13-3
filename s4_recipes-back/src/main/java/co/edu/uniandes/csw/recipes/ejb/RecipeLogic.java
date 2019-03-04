@@ -35,6 +35,9 @@ public class RecipeLogic {
         if(getRecipe(recipeEntity.getId())!=null && getRecipe(recipeEntity.getId()).getName().equals(recipeEntity.getName()))
             throw new BusinessLogicException("La recipe ya existe");
         
+        if(recipeEntity.getIngredients().size()==0 )
+            throw new BusinessLogicException("No hay ingredientes");
+        
         persistence.create(recipeEntity);
         return recipeEntity;
     }

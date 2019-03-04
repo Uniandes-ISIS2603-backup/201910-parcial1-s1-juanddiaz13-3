@@ -6,12 +6,16 @@
 package co.edu.uniandes.csw.recipes.dtos;
 
 import co.edu.uniandes.csw.recipes.entities.RecipeEntity;
+import java.io.Serializable;
+import java.util.List;
 
 /**
  *
  * @author CesarF
  */
-public class RecipeDetailDTO extends RecipeDTO {
+public class RecipeDetailDTO extends RecipeDTO implements Serializable {
+    
+    private List<IngredientDTO> ingredients;
     
     public RecipeDetailDTO(){
     
@@ -20,5 +24,6 @@ public class RecipeDetailDTO extends RecipeDTO {
     public RecipeDetailDTO(RecipeEntity entity){
         super(entity);
     }
+    
     
 }
