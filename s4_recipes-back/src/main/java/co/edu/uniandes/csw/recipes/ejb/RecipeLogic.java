@@ -6,6 +6,7 @@
 package co.edu.uniandes.csw.recipes.ejb;
 
 import co.edu.uniandes.csw.recipes.entities.RecipeEntity;
+import co.edu.uniandes.csw.recipes.exceptions.BusinessLogicException;
 import co.edu.uniandes.csw.recipes.persistence.RecipePersistence;
 import javax.ejb.Stateless;
 import javax.inject.Inject;
@@ -24,6 +25,18 @@ public class RecipeLogic {
     }
 
     //TODO crear el método createRecipe
-
+    public RecipeEntity createRecipe(RecipeEntity recipeEntity) throws BusinessLogicException{
+        if(recipeEntity.getName()==null || recipeEntity.getName().length()>30)
+            throw new BusinessLogicException("El nombre no es valido");
+        
+        if(recipeEntity.getDescription()==null || recipeEntity.getDescription().length()>150)
+            throw new BusinessLogicException("La descripcion no es valida");
+        
+        if(getRecipe(recipeEntity.getId())!=null && getRecipe(recipeEntity.getId()).getName().equals(recipeEntity.getName()))
+            throw new BusinessLogicException("La recipe ya existe");
+        
+        persistence.create(recipeEntity);
+        return recipeEntity;
+    }
 
 }
